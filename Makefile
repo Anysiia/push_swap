@@ -1,42 +1,54 @@
 
-CHECKER =checker
+CHECKER =		checker
 
-NAME =	push_swap
+PUSH =			push_swap
 
-CC =	clang
+CC =			clang
 
-CFLAGS = -Wall -Werror -Wextra
-CFLAGS += -fsanitize=address
+CFLAGS = 		-Wall -Werror -Wextra
+CFLAGS +=		-fsanitize=address
 
-INCLUDE = -I ./includes/ -I ./LIBFT_DIR/
+INCL =	 		-I ./includes/ -I ./LIBFT_DIR/
 
-LIBFT_DIR = Libft/
+LIBFT_DIR = 	Libft/
 
-SRCS =	srcs/push_swap.c
+SRCS =			srcs/utils/check_arg.c \
+				srcs/utils/init_all.c \
+				srcs/utils/operation.c \
+				srcs/utils/stack.c
 
-OBJS =	${SRCS:.c=.o}
+SRCS_CHECKER =	srcs/checker/main.c
+
+SRCS_PUSH =		srcs/push_swap/main.c
+
+OBJS =			${SRCS:.c=.o}
+
+O_CHECK =		${SRCS_CHECKER:.c=.o}
+
+O_PUSH =		${SRCS_PUSH:.c=.o}
 
 .c.o:
-		@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o ${<:.c=.o}
+		@$(CC) $(CFLAGS) $(INC) -c $< -o ${<:.c=.o}
 
-all:	$(PUSH)
+all:	$(PUSH) $(CHECKER)
 
-$(NAME):$(NAME)
+$(PUSH):$(OBJS) $(O_PUSH)
 		@$(MAKE) -C ./libft/ >/dev/null
-		@$(CC) $(OBJS) $(INCLUDE) $(CFLAGS) ./libft/libft.a -o $(NAME)
+		@$(CC) $(OBJS) $(O_PUSH) $(INC) $(CFLAGS) ./libft/libft.a -o $(PUSH)
 
-$(CHECKER):$(OBJS)
+$(CHECKER):$(OBJS) $(O_CHECK)
 		@$(MAKE) -C ./libft/ >/dev/null
-		@$(CC) $(OBJS) $(INCLUDE) $(CFLAGS) ./libft/libft.c -o $(CHECKER)
+		@$(CC) $(OBJS) $(O_CHECK) $(INC) $(CFLAGS) ./libft/libft.a -o $(CHECKER)
 
 clean:
-		@rm -rf $(OBJS)
+		@rm -rf $(OBJS) $(OBJS_CHECKER) $(OBJS_PUSH)
 		@$(MAKE) clean -C ./libft/ >/dev/null
 
 fclean:
-		@rm -rf $(OBJS)
+		@rm -rf $(OBJS) $(OBJS_CHECKER) $(OBJS_PUSH)
 		@$(MAKE) fclean -C ./libft/ >/dev/null
-		@rm -rf $(NAME)
+		@rm -rf $(PUSH)
+		@rm -rf $(CHECKER)
 
 re:		fclean all
 

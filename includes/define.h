@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 12:47:34 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/18 13:08:01 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/18 15:46:29 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,18 @@ typedef struct s_stack
 	t_number	*last;
 }	t_stack;
 
-typedef struct s_list
+typedef struct s_op
 {
-	char			*data;
-	struct s_list	*next;
-}	t_list;
+	char		*data;
+	struct s_op	*next;
+	struct s_op	*prev;
+}	t_op;
 
 typedef struct s_ope_list
 {
-	t_list	*first;
-	t_list	*last;
+	int		len;
+	t_op	*first;
+	t_op	*last;
 }	t_ope_list;
 
 typedef struct s_all

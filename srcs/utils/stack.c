@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_all.c                                         :+:      :+:    :+:   */
+/*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:05:28 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/18 13:14:44 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/18 15:13:29 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/global.h"
+#include "../../includes/global.h"
 
 int	push_back_number(t_stack *stack, int value)
 {
@@ -84,30 +84,6 @@ int	remove_front_number(t_stack *stack)
 	return (EXIT_SUCCESS);
 }
 
-void	print(t_all *all)
-{
-	t_number	*a;
-	t_number	*b;
-
-	a = all->a->first;
-	b = all->b->first;
-	while (a || b)
-	{
-		if (a)
-		{
-			ft_putnbr(a->value);
-			a = a->next;
-		}
-		ft_putstr("		");
-		if (b)
-		{
-			ft_putnbr(b->value);
-			b = b->next;
-		}
-		ft_putchar('\n');
-	}
-}
-
 void	free_stack(t_stack **to_free)
 {
 	t_number	*tmp;
@@ -123,31 +99,4 @@ void	free_stack(t_stack **to_free)
 	(*to_free)->first = NULL;
 	(*to_free)->last = NULL;
 	*to_free = NULL;
-}
-
-void	init_all(t_all *all)
-{
-	all->a->first = NULL;
-	all->a->last = NULL;
-	all->a->len = 0;
-	all->b->first = NULL;
-	all->b->last = NULL;
-	all->b->len = 0;
-	all->op->first = NULL;
-	all->op->last = NULL;
-}
-
-void	free_all(t_all *all)
-{
-	if (all->a)
-		free_stack(&all->a);
-	if (all->b)
-		free_stack(&all->b);
-}
-
-int	error(t_all *all)
-{
-	ft_putstr_fd("Error\n", STDERR);
-	free_all(all);
-	return (EXIT_FAILURE);
 }
