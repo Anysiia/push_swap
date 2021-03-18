@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 11:59:31 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/11 13:04:14 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/18 13:14:32 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,35 +21,12 @@ int	ft_isnumeric(char *number)
 		i++;
 	while (number[i] && ft_isdigit(number[i]) == 1)
 		i++;
-	if (number[i] != '\0')
+	if (number[i])
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
-int	is_overflow(char *number)
-{
-	long int	nb;
-	int			sign;
-
-	nb = 0;
-	sign = 1;
-	if (*number == '-' || *number == '+')
-	{
-		if (*number == '-')
-			sign = -1;
-		number++;
-	}
-	while (ft_isdigit(*number))
-	{
-		nb = nb * 10 + (*number - 48);
-		if ((sign == 1 && nb > INT_MAX) || (sign == -1 && nb * sign < INT_MIN))
-			return (EXIT_FAILURE);
-		number++;
-	}
-	return (EXIT_SUCCESS);
-}
-
-int	check_args(int ac, char **av, t_list *stack_a)
+int	check_args(int ac, char **av, t_all *all)
 {
 	int		i;
 	int		number;
@@ -62,26 +39,23 @@ int	check_args(int ac, char **av, t_list *stack_a)
 		if (ret)
 			return (EXIT_FAILURE);
 		number = ft_atoi(av[i]);
-		if (errno = ERANGE)
+		if (errno == ERANGE)
 			return (EXIT_FAILURE);
-		add_back_number(number, stack_a);
+		push_back_number(all->a, number);
 		i++;
 	}
 	return (EXIT_SUCCESS);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	int		ret;
-	t_list	*stack_a;
-	t_list	*stack_b;
+	t_all	tmp;
 
 	if (ac == 1)
 		return (EXIT_SUCCESS);
-	ret = check_args(ac, av, stack_a);
+	init_all(&tmp);
+	ret = check_args(ac, av, &tmp);
 	if (ret)
-	{
-		write(STDERR, "Error\n", 6);
-		return (EXIT_FAILURE);
-	}
+		return (error(&tmp));
 }

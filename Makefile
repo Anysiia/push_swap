@@ -14,15 +14,14 @@ LIBFT_DIR = Libft/
 
 SRCS =	srcs/push_swap.c
 
-
 OBJS =	${SRCS:.c=.o}
 
 .c.o:
 		@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o ${<:.c=.o}
 
-all:	$(NAME)
+all:	$(PUSH)
 
-$(NAME):$(OBJS)
+$(NAME):$(NAME)
 		@$(MAKE) -C ./libft/ >/dev/null
 		@$(CC) $(OBJS) $(INCLUDE) $(CFLAGS) ./libft/libft.a -o $(NAME)
 
