@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 11:59:31 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/18 15:12:51 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/18 17:48:59 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ int	main(int ac, char **av)
 		return (EXIT_SUCCESS);
 	init_all(&tmp);
 	ret = check_args(ac, av, &tmp);
+	if (ret)
+		return (error(&tmp));
+	ret = get_instruction(&tmp);
 	if (ret)
 		return (error(&tmp));
 	print_stacks(&tmp);

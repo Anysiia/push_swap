@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 12:47:34 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/18 15:46:29 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/18 17:12:27 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define STDIN 0
 # define STDOUT 1
 # define STDERR 2
+# define NB_OP 11
 
 typedef struct s_number
 {

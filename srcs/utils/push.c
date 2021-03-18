@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/18 14:40:50 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/18 16:56:15 by cmorel-a         ###   ########.fr       */
+/*   Created: 2021/03/18 16:10:22 by cmorel-a          #+#    #+#             */
+/*   Updated: 2021/03/18 16:26:05 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/global.h"
 
-int	main(int ac, char **av)
+int	push_a(t_all *all)
 {
-	int		ret;
-	t_all	tmp;
+	return (EXIT_SUCCESS);
+}
 
-	if (ac == 1)
-		return (EXIT_SUCCESS);
-	init_all(&tmp);
-	ret = check_args(ac, av, &tmp);
-	if (ret)
-		return (error(&tmp));
-	print_stacks(&tmp);
-	free_all(&tmp);
+int	push_b(t_all *all)
+{
 	return (EXIT_SUCCESS);
 }

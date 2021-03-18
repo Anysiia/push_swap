@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 12:01:36 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/18 15:31:52 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/18 17:55:02 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ Utils functions
 int		init_all(t_all *all);
 void	free_all(t_all *all);
 int		error(t_all *all);
-int		push_bash_instruction(t_ope_list *ope, char *instruction);
+int		push_back_instruction(t_ope_list *ope, char *instruction);
 void	free_list(t_ope_list **to_free);
 void	print_operation_list(t_all *all);
 void	print_stacks(t_all *all);
@@ -33,5 +33,30 @@ int		remove_back_number(t_stack *stack);
 int		remove_front_number(t_stack *stack);
 void	free_stack(t_stack **to_free);
 int		check_args(int ac, char **av, t_all *all);
+
+/*
+instructions
+*/
+int		swap_a(t_all *all);
+int		swap_b(t_all *all);
+int		swap_all(t_all *all);
+int		push_a(t_all *all);
+int		push_b(t_all *all);
+int		rotate_a(t_all *all);
+int		rotate_b(t_all *all);
+int		rotate_all(t_all *all);
+int		reverse_rotate_a(t_all *all);
+int		reverse_rotate_b(t_all *all);
+int		reverse_rotate_all(t_all *all);
+
+/*
+Checker
+*/
+int		get_instruction(t_all *all);
+int		execute_instruction(t_all *all, char *instruction);
+
+/*
+push_swap
+*/
 
 #endif

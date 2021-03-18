@@ -5,8 +5,8 @@ PUSH =			push_swap
 
 CC =			clang
 
-CFLAGS = 		-Wall -Werror -Wextra
-CFLAGS +=		-fsanitize=address
+#CFLAGS = 		-Wall -Werror -Wextra
+#CFLAGS +=		-fsanitize=address
 
 INCL =	 		-I ./includes/ -I ./LIBFT_DIR/
 
@@ -15,9 +15,14 @@ LIBFT_DIR = 	Libft/
 SRCS =			srcs/utils/check_arg.c \
 				srcs/utils/init_all.c \
 				srcs/utils/operation.c \
-				srcs/utils/stack.c
+				srcs/utils/stack.c \
+				srcs/utils/push.c \
+				srcs/utils/swap.c \
+				srcs/utils/rotate.c \
+				srcs/utils/reverse_rotate.c
 
-SRCS_CHECKER =	srcs/checker/main.c
+SRCS_CHECKER =	srcs/checker/main.c \
+				srcs/checker/instruction.c
 
 SRCS_PUSH =		srcs/push_swap/main.c
 
@@ -41,11 +46,15 @@ $(CHECKER):$(OBJS) $(O_CHECK)
 		@$(CC) $(OBJS) $(O_CHECK) $(INC) $(CFLAGS) ./libft/libft.a -o $(CHECKER)
 
 clean:
-		@rm -rf $(OBJS) $(OBJS_CHECKER) $(OBJS_PUSH)
+		@rm -rf $(OBJS)
+		@rm -rf $(OBJS_CHECKER)
+		@rm -rf $(OBJS_PUSH)
 		@$(MAKE) clean -C ./libft/ >/dev/null
 
 fclean:
-		@rm -rf $(OBJS) $(OBJS_CHECKER) $(OBJS_PUSH)
+		@rm -rf $(OBJS)
+		@rm -rf $(O_CHECK)
+		@rm -rf $(O_PUSH)
 		@$(MAKE) fclean -C ./libft/ >/dev/null
 		@rm -rf $(PUSH)
 		@rm -rf $(CHECKER)
