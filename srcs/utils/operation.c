@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:05:28 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/18 15:17:17 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/18 15:58:19 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	free_list(t_ope_list **to_free)
 	}
 	(*to_free)->first = NULL;
 	(*to_free)->last = NULL;
+	free(*to_free);
 	*to_free = NULL;
 }
 

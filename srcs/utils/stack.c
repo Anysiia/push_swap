@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:05:28 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/18 15:13:29 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/18 15:57:38 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,6 @@ void	free_stack(t_stack **to_free)
 	}
 	(*to_free)->first = NULL;
 	(*to_free)->last = NULL;
+	free(*to_free);
 	*to_free = NULL;
 }
