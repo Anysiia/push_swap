@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 12:01:36 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/18 17:55:02 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/22 11:21:28 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int		push_front_number(t_stack *stack, int value);
 int		remove_back_number(t_stack *stack);
 int		remove_front_number(t_stack *stack);
 void	free_stack(t_stack **to_free);
+int		ft_strtoi(const char *number, int *is_overflow);
 int		check_args(int ac, char **av, t_all *all);
 
 /*
@@ -53,7 +54,7 @@ int		reverse_rotate_all(t_all *all);
 Checker
 */
 int		get_instruction(t_all *all);
-int		execute_instruction(t_all *all, char *instruction);
+int		execute_all_instruction(t_all *all);
 
 /*
 push_swap

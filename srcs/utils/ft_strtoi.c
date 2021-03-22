@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strtoi.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 11:16:59 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/22 10:35:51 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/22 10:46:04 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/global.h"
 
-static int	check_overflow(int init, int to_add, int sign)
+static int	check_overflow(int init, int to_add, int sign, int *is_overflow)
 {
 	if (init > OVF_INT)
 	{
-		errno = ERANGE;
+		*is_overflow = 1;
 		if (sign == 1)
 			return (INT_MAX);
 		if (sign == -1)
@@ -26,19 +26,19 @@ static int	check_overflow(int init, int to_add, int sign)
 	{
 		if (sign == 1 && to_add > 7)
 		{
-			errno = ERANGE;
+			*is_overflow = 1;
 			return (INT_MAX);
 		}
 		if (sign == -1 && to_add > 8)
 		{
-			errno = ERANGE;
+			*is_overflow = 1;
 			return (INT_MIN);
 		}
 	}
 	return (-1);
 }
 
-int	ft_atoi(const char *str)
+int	ft_strtoi(const char *str, int *is_overflow)
 {
 	int	tmp;
 	int	sign;
@@ -58,7 +58,7 @@ int	ft_atoi(const char *str)
 	while (ft_isdigit(*str))
 	{
 		if (tmp >= OVF_INT)
-			overflow = check_overflow(tmp, *str - 48, sign);
+			overflow = check_overflow(tmp, *str - 48, sign, is_overflow);
 		if (overflow != -1)
 			return (overflow);
 		tmp = tmp * 10 + (*str - 48);

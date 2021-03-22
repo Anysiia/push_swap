@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 17:05:40 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/18 17:54:14 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/22 12:36:37 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,24 +29,7 @@ static int	is_instruction(char	*to_test)
 	return (EXIT_FAILURE);
 }
 
-int	get_instruction(t_all *all)
-{
-	char	*line;
-	int		ret;
-
-	while (get_next_line(STDIN, &line) == 1)
-	{
-		ret = is_instruction(line);
-		if (ret == EXIT_FAILURE)
-			return (EXIT_FAILURE);
-		ret = push_back_instruction(all->op, line);
-		if (ret == EXIT_FAILURE)
-			return (EXIT_FAILURE);
-	}
-	return (EXIT_SUCCESS);
-}
-
-int	execute_instruction(t_all *all, char *instruction)
+static int	execute_instruction(t_all *all, char *instruction)
 {
 	if (!ft_strcmp("sa", instruction))
 		return (swap_a(all));
@@ -71,4 +54,44 @@ int	execute_instruction(t_all *all, char *instruction)
 	if (!ft_strcmp("rrr", instruction))
 		return (reverse_rotate_all(all));
 	return (EXIT_FAILURE);
+}
+
+int	get_instruction(t_all *all)
+{
+	char	*line;
+	int		ret;
+
+	while (get_next_line(STDIN, &line) == 1)
+	{
+		ret = is_instruction(line);
+		if (ret == EXIT_FAILURE)
+		{
+			ft_freestr(&line);
+			return (EXIT_FAILURE);
+		}
+		ret = push_back_instruction(all->op, line);
+		if (ret == EXIT_FAILURE)
+		{
+			ft_freestr(&line);
+			return (EXIT_FAILURE);
+		}
+	}
+	ft_freestr(&line);
+	return (EXIT_SUCCESS);
+}
+
+int	execute_all_instruction(t_all *all)
+{
+	t_op	*list;
+	int		ret;
+
+	list = all->op->first;
+	while (list)
+	{
+		ret = execute_instruction(all, list->data);
+		if (ret)
+			return (EXIT_FAILURE);
+		list = list->next;
+	}
+	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 11:59:31 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/18 15:10:36 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/22 10:42:49 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,17 @@ int	check_args(int ac, char **av, t_all *all)
 	int		i;
 	int		number;
 	int		ret;
+	int		is_overflow;
 
 	i = 1;
+	is_overflow = 0;
 	while (i < ac)
 	{
 		ret = ft_isnumeric(av[i]);
 		if (ret)
 			return (EXIT_FAILURE);
-		number = ft_atoi(av[i]);
-		if (errno == ERANGE)
+		number = ft_strtoi(av[i], &is_overflow);
+		if (is_overflow)
 			return (EXIT_FAILURE);
 		ret = is_inlist(all, number);
 		if (ret)
