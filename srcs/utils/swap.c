@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 16:11:57 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/22 11:09:33 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/22 12:39:44 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	swap_b(t_all *all)
 	return (EXIT_SUCCESS);
 }
 
-int swap_all(t_all *all)
+int	swap_all(t_all *all)
 {
 	int	ret;
 
