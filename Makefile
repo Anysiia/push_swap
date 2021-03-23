@@ -16,7 +16,7 @@ SRCS =			srcs/utils/check_arg.c \
 				srcs/utils/ft_strtoi.c \
 				srcs/utils/init_all.c \
 				srcs/utils/operation.c \
-				srcs/utils/stack.c \
+				srcs/utils/stack2.c \
 				srcs/utils/push.c \
 				srcs/utils/swap.c \
 				srcs/utils/rotate.c \

@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 11:59:31 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/22 10:42:49 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/23 12:20:58 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	is_inlist(t_all *all, int number)
 	t_number	*tmp;
 
 	tmp = all->a->first;
-	while (tmp)
+	while (tmp && tmp->next != all->a->first)
 	{
 		if (tmp->value == number)
 			return (1);

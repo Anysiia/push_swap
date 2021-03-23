@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.c                                            :+:      :+:    :+:   */
+/*   stack2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:05:28 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/23 09:57:47 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/23 12:26:36 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,33 +20,31 @@ int	push_back_number(t_stack *stack, int value)
 	if (!new)
 		return (EXIT_FAILURE);
 	new->value = value;
-	new->prev = stack->last;
-	new->next = NULL;
-	if (stack->last)
-		stack->last->next = new;
-	else
+	if (!stack->first)
+	{
+		new->prev = new;
+		new->next = new;
 		stack->first = new;
-	stack->last = new;
+	}
+	else
+	{
+		new->next = stack->first;
+		new->prev = stack->first->prev;
+		stack->first->prev->next = new;
+		stack->first->prev = new;
+	}
 	stack->len++;
 	return (EXIT_SUCCESS);
 }
 
 int	push_front_number(t_stack *stack, int value)
 {
-	t_number	*new;
+	int	ret;
 
-	new = malloc(sizeof(t_number));
-	if (!new)
+	ret = push_back_number(stack, value);
+	if (ret)
 		return (EXIT_FAILURE);
-	new->value = value;
-	new->next = stack->first;
-	new->prev = NULL;
-	if (stack->first)
-		stack->first->prev = new;
-	else
-		stack->last = new;
-	stack->first = new;
-	stack->len++;
+	stack->first = stack->first->prev;
 	return (EXIT_SUCCESS);
 }
 
@@ -54,14 +52,11 @@ int	remove_back_number(t_stack *stack)
 {
 	t_number	*tmp;
 
-	tmp = stack->last;
+	tmp = stack->first->prev;
 	if (!tmp)
 		return (EXIT_FAILURE);
-	stack->last = tmp->prev;
-	if (stack->last)
-		stack->last->next = NULL;
-	else
-		stack->first = NULL;
+	stack->first->prev = stack->first->prev->prev;
+	stack->first->prev->prev->next = stack->first;
 	free(tmp);
 	stack->len--;
 	return (EXIT_SUCCESS);
@@ -69,19 +64,8 @@ int	remove_back_number(t_stack *stack)
 
 int	remove_front_number(t_stack *stack)
 {
-	t_number	*tmp;
-
-	tmp = stack->first;
-	if (!tmp)
-		return (EXIT_FAILURE);
-	stack->first = tmp->next;
-	if (stack->first)
-		stack->first->next = NULL;
-	else
-		stack->last = NULL;
-	free(tmp);
-	stack->len--;
-	return (EXIT_SUCCESS);
+	stack->first = stack->first->next;
+	return (remove_back_number(stack));
 }
 
 void	free_stack(t_stack **to_free)
@@ -90,7 +74,7 @@ void	free_stack(t_stack **to_free)
 	t_number	*next;
 
 	next = (*to_free)->first;
-	while (next)
+	while (next && next->next != (*to_free)->first)
 	{
 		tmp = next;
 		next = tmp->next;

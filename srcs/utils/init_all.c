@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:05:28 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/18 15:31:01 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/23 09:55:53 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,11 @@ int	init_all(t_all *all)
 	if (!all->a)
 		return (EXIT_FAILURE);
 	all->a->first = NULL;
-	all->a->last = NULL;
 	all->b = malloc(sizeof(t_stack));
 	if (!all->b)
 		return (EXIT_FAILURE);
 	all->a->len = 0;
 	all->b->first = NULL;
-	all->b->last = NULL;
 	all->b->len = 0;
 	all->op = malloc(sizeof(t_ope_list));
 	if (!all->op)

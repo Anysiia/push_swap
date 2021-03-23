@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:05:28 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/22 12:34:02 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/23 12:25:57 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,15 @@ void	print_stacks(t_all *all)
 
 	a = all->a->first;
 	b = all->b->first;
-	while (a || b)
+	while ((a && a->next != all->a->first) || (b && b->next != all->b->first))
 	{
-		if (a)
+		if (a && a != all->a->first)
 		{
 			ft_putnbr(a->value);
 			a = a->next;
 		}
 		ft_putstr("		");
-		if (b)
+		if (b && b != all->b->first)
 		{
 			ft_putnbr(b->value);
 			b = b->next;
