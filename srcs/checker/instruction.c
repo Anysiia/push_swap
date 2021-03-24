@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 17:05:40 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/22 12:36:37 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/24 17:21:59 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,18 @@ int	execute_all_instruction(t_all *all)
 	t_op	*list;
 	int		ret;
 
+	ft_putstr("\n---Start tri---\n");
 	list = all->op->first;
 	while (list)
 	{
 		ret = execute_instruction(all, list->data);
 		if (ret)
 			return (EXIT_FAILURE);
+		ft_putstr("Operation: ");
+		ft_putstr(list->data);
+		ft_putstr("\n");
+		print_stacks(all);
+		ft_putstr("\n");
 		list = list->next;
 	}
 	return (EXIT_SUCCESS);
