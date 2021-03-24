@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:05:28 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/24 15:48:54 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/24 18:21:35 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,13 @@ void	print_operation_list(t_all *all)
 
 void	print_stacks(t_all *all)
 {
-	int			i;
 	t_number	*a;
 	t_number	*b;
+	int			i;
 
 	a = all->a->first;
 	b = all->b->first;
 	ft_putstr("Stack a: ");
-	ft_putnbr(all->a->len);
-	ft_putstr(" : ");
 	i = 0;
 	while (i < all->a->len)
 	{
@@ -83,8 +81,6 @@ void	print_stacks(t_all *all)
 		i++;
 	}
 	ft_putstr("\nStack b: ");
-	ft_putnbr(all->b->len);
-	ft_putstr(" : ");
 	i = 0;
 	while (i < all->b->len)
 	{

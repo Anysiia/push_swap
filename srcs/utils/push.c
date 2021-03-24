@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 16:10:22 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/24 16:53:01 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/24 18:56:24 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,19 @@ static void	push(t_stack *src, t_stack *dst)
 	if (src->len < 1)
 		return ;
 	tmp = src->first;
-	src->first->prev->next = src->first->next->prev;
-	src->first->next->prev = src->first->prev->next;
+	src->first->prev->next = src->first->next;
+	src->first->next->prev = src->first->prev;
 	src->first = src->first->next;
 	tmp->next = tmp;
 	tmp->prev = tmp;
 	if (dst->len > 0)
 	{
-		tmp->next = dst->first;
 		tmp->prev = dst->first->prev;
+		tmp->next = dst->first;
 		dst->first->prev->next = tmp;
 		dst->first->prev = tmp;
-		dst->first = dst->first->prev;
 	}
-	else
-		dst->first = tmp;
+	dst->first = tmp;
 	src->len--;
 	dst->len++;
 }
