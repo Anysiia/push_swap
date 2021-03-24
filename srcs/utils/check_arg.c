@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 11:59:31 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/23 12:20:58 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/24 15:30:02 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	is_inlist(t_all *all, int number)
 	return (0);
 }
 
-int	check_args(int ac, char **av, t_all *all)
+static int	check_av_list(int ac, char **av, t_all *all)
 {
 	int		i;
 	int		number;
@@ -66,4 +66,21 @@ int	check_args(int ac, char **av, t_all *all)
 		i++;
 	}
 	return (EXIT_SUCCESS);
+}
+
+int	check_args(int ac, char **av, t_all *all)
+{
+	char	**split;
+	int		nb_args;
+	int		ret;
+
+	if (ac > 2 || (ac == 2 && !ft_test_set(' ', av[1])))
+		return (check_av_list(ac, av, all));
+	split = ft_split(av[1], ' ');
+	if (split == NULL)
+		return (EXIT_FAILURE);
+	nb_args = ft_len_tab(split);
+	ret = check_av_list(nb_args, split, all);
+	split = ft_free_tab(split);
+	return (ret);
 }
