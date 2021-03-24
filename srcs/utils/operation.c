@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:05:28 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/23 12:25:57 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/24 15:48:54 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,24 +65,33 @@ void	print_operation_list(t_all *all)
 
 void	print_stacks(t_all *all)
 {
+	int			i;
 	t_number	*a;
 	t_number	*b;
 
 	a = all->a->first;
 	b = all->b->first;
-	while ((a && a->next != all->a->first) || (b && b->next != all->b->first))
+	ft_putstr("Stack a: ");
+	ft_putnbr(all->a->len);
+	ft_putstr(" : ");
+	i = 0;
+	while (i < all->a->len)
 	{
-		if (a && a != all->a->first)
-		{
-			ft_putnbr(a->value);
-			a = a->next;
-		}
-		ft_putstr("		");
-		if (b && b != all->b->first)
-		{
-			ft_putnbr(b->value);
-			b = b->next;
-		}
-		ft_putchar('\n');
+		ft_putnbr(a->value);
+		ft_putchar(' ');
+		a = a->next;
+		i++;
 	}
+	ft_putstr("\nStack b: ");
+	ft_putnbr(all->b->len);
+	ft_putstr(" : ");
+	i = 0;
+	while (i < all->b->len)
+	{
+		ft_putnbr(b->value);
+		ft_putchar(' ');
+		b = b->next;
+		i++;
+	}
+	ft_putchar('\n');
 }

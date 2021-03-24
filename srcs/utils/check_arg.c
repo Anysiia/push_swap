@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 11:59:31 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/24 15:30:02 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/24 16:02:50 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,26 @@ static int	ft_isnumeric(char *number)
 static int	is_inlist(t_all *all, int number)
 {
 	t_number	*tmp;
+	int			i;
 
 	tmp = all->a->first;
-	while (tmp && tmp->next != all->a->first)
+	i = 0;
+	while (i < all->a->len)
 	{
 		if (tmp->value == number)
 			return (1);
 		tmp = tmp->next;
+		i++;
 	}
 	return (0);
 }
 
-static int	check_av_list(int ac, char **av, t_all *all)
+static int	check_av_list(int ac, char **av, t_all *all, int i)
 {
-	int		i;
 	int		number;
 	int		ret;
 	int		is_overflow;
 
-	i = 1;
 	is_overflow = 0;
 	while (i < ac)
 	{
@@ -75,12 +76,12 @@ int	check_args(int ac, char **av, t_all *all)
 	int		ret;
 
 	if (ac > 2 || (ac == 2 && !ft_test_set(' ', av[1])))
-		return (check_av_list(ac, av, all));
+		return (check_av_list(ac, av, all, 1));
 	split = ft_split(av[1], ' ');
 	if (split == NULL)
 		return (EXIT_FAILURE);
 	nb_args = ft_len_tab(split);
-	ret = check_av_list(nb_args, split, all);
+	ret = check_av_list(nb_args, split, all, 0);
 	split = ft_free_tab(split);
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:05:28 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/23 12:26:36 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/24 15:54:16 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,17 @@ int	remove_front_number(t_stack *stack)
 void	free_stack(t_stack **to_free)
 {
 	t_number	*tmp;
-	t_number	*next;
+	t_number	*current;
+	int			i;
 
-	next = (*to_free)->first;
-	while (next && next->next != (*to_free)->first)
+	current = (*to_free)->first;
+	i = 0;
+	while (i < (*to_free)->len)
 	{
-		tmp = next;
-		next = tmp->next;
+		tmp = current;
+		current = tmp->next;
 		free(tmp);
+		i++;
 	}
 	(*to_free)->first = NULL;
 	free(*to_free);

@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 11:59:31 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/23 12:28:17 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/24 15:41:40 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	main(int ac, char **av)
 		ft_putstr("KO\n");
 	else
 		ft_putstr("OK\n");
-//	print_stacks(&tmp);
+	print_stacks(&tmp);
 	free_all(&tmp);
 	return (EXIT_SUCCESS);
 }
