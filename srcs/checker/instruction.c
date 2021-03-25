@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 17:05:40 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/25 12:12:42 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/25 17:07:36 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	get_instruction(t_all *all)
 			ft_freestr(&line);
 			return (EXIT_FAILURE);
 		}
+		ft_freestr(&line);
 	}
 	ft_freestr(&line);
 	return (EXIT_SUCCESS);

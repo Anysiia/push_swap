@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:05:28 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/25 11:18:39 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/25 17:03:56 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ int	push_back_instruction(t_ope_list *ope, char *instruction)
 	new = malloc(sizeof(t_number));
 	if (!new)
 		return (EXIT_FAILURE);
-	new->data = instruction;
+	new->data = ft_strdup(instruction);
+	if (!new)
+		return (EXIT_FAILURE);
 	new->prev = ope->last;
 	new->next = NULL;
 	if (ope->last)
@@ -34,18 +36,16 @@ int	push_back_instruction(t_ope_list *ope, char *instruction)
 void	free_list(t_ope_list **to_free)
 {
 	t_op	*tmp;
-	t_op	*next;
+	t_op	*current;
 
-	next = (*to_free)->first;
-	while (next)
+	current = (*to_free)->first;
+	while (current)
 	{
-		tmp = next;
+		tmp = current;
+		current = tmp->next;
 		ft_freestr(&tmp->data);
-		next = tmp->next;
 		free(tmp);
 	}
-	(*to_free)->first = NULL;
-	(*to_free)->last = NULL;
 	free(*to_free);
 	*to_free = NULL;
 }
