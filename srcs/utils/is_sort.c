@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   is_sort.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/11 11:59:31 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/25 10:39:04 by cmorel-a         ###   ########.fr       */
+/*   Created: 2021/03/25 10:38:16 by cmorel-a          #+#    #+#             */
+/*   Updated: 2021/03/25 10:38:46 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/global.h"
 
-int	main(int ac, char **av)
+int	is_sort(t_all *all)
 {
-	int		ret;
-	t_all	tmp;
+	t_number	*tmp;
 
-	if (ac == 1)
-		return (EXIT_SUCCESS);
-	init_all(&tmp);
-	ret = check_args(ac, av, &tmp);
-	if (ret)
-		return (error(&tmp));
-	ret = get_instruction(&tmp);
-	if (ret)
-		return (error(&tmp));
-	ret = execute_all_instruction(&tmp);
-	if (ret)
-		return (error(&tmp));
-	ret = is_sort(&tmp);
-	if (ret)
-		ft_putstr("KO\n");
-	else
-		ft_putstr("OK\n");
-	free_all(&tmp);
+	if (all->b->len != 0)
+		return (EXIT_FAILURE);
+	tmp = all->a->first;
+	while (tmp && tmp->next != all->a->first)
+	{
+		if (tmp->value > tmp->next->value)
+			return (EXIT_FAILURE);
+		tmp = tmp->next;
+	}
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 16:10:22 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/24 18:56:24 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/25 11:43:12 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,30 @@ static void	push(t_stack *src, t_stack *dst)
 	dst->len++;
 }
 
-int	push_a(t_all *all)
+int	push_a(t_all *all, int print)
 {
+	int	ret;
+
 	push(all->b, all->a);
+	if (print)
+	{
+		ret = push_back_instruction(all->op, "pa\n");
+		if (ret == EXIT_FAILURE)
+			return (EXIT_FAILURE);
+	}
 	return (EXIT_SUCCESS);
 }
 
-int	push_b(t_all *all)
+int	push_b(t_all *all, int print)
 {
+	int	ret;
+
 	push(all->a, all->b);
+	if (print)
+	{
+		ret = push_back_instruction(all->op, "pb\n");
+		if (ret == EXIT_FAILURE)
+			return (EXIT_FAILURE);
+	}
 	return (EXIT_SUCCESS);
 }

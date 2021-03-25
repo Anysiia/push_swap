@@ -5,7 +5,7 @@ PUSH =			push_swap
 
 CC =			clang
 
-#CFLAGS = 		-Wall -Werror -Wextra
+CFLAGS = 		-Wall -Werror -Wextra
 CFLAGS +=		-fsanitize=address
 
 INCL =	 		-I ./includes/ -I ./LIBFT_DIR/
@@ -15,8 +15,11 @@ LIBFT_DIR = 	Libft/
 SRCS =			srcs/utils/check_arg.c \
 				srcs/utils/ft_strtoi.c \
 				srcs/utils/init_all.c \
+				srcs/utils/is_sort.c \
 				srcs/utils/operation.c \
-				srcs/utils/stack2.c \
+				srcs/utils/do_instruction.c \
+				srcs/utils/stack.c \
+				srcs/utils/print.c \
 				srcs/utils/push.c \
 				srcs/utils/swap.c \
 				srcs/utils/rotate.c \

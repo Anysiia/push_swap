@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 17:05:40 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/24 17:21:59 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/25 12:12:42 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static int	is_instruction(char	*to_test)
 {
 	int			i;
-	int			len;
 	static char	*operation_list[] = {"sa", "sb", "ss", "pa", "pb", "ra", "rb",
 		"rr", "rra", "rrb", "rrr"};
 
@@ -26,33 +25,6 @@ static int	is_instruction(char	*to_test)
 			return (EXIT_SUCCESS);
 		i++;
 	}
-	return (EXIT_FAILURE);
-}
-
-static int	execute_instruction(t_all *all, char *instruction)
-{
-	if (!ft_strcmp("sa", instruction))
-		return (swap_a(all));
-	if (!ft_strcmp("sb", instruction))
-		return (swap_b(all));
-	if (!ft_strcmp("ss", instruction))
-		return (swap_all(all));
-	if (!ft_strcmp("pa", instruction))
-		return (push_a(all));
-	if (!ft_strcmp("pb", instruction))
-		return (push_b(all));
-	if (!ft_strcmp("ra", instruction))
-		return (rotate_a(all));
-	if (!ft_strcmp("rb", instruction))
-		return (rotate_b(all));
-	if (!ft_strcmp("rr", instruction))
-		return (rotate_all(all));
-	if (!ft_strcmp("rra", instruction))
-		return (reverse_rotate_a(all));
-	if (!ft_strcmp("rrb", instruction))
-		return (reverse_rotate_b(all));
-	if (!ft_strcmp("rrr", instruction))
-		return (reverse_rotate_all(all));
 	return (EXIT_FAILURE);
 }
 
@@ -89,7 +61,7 @@ int	execute_all_instruction(t_all *all)
 	list = all->op->first;
 	while (list)
 	{
-		ret = execute_instruction(all, list->data);
+		ret = execute_instruction(all, list->data, 0);
 		if (ret)
 			return (EXIT_FAILURE);
 		ft_putstr("Operation: ");

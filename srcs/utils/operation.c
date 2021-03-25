@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:05:28 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/24 18:21:35 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/25 11:18:39 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,46 +48,4 @@ void	free_list(t_ope_list **to_free)
 	(*to_free)->last = NULL;
 	free(*to_free);
 	*to_free = NULL;
-}
-
-void	print_operation_list(t_all *all)
-{
-	t_op	*tmp;
-
-	tmp = all->op->first;
-	while (tmp)
-	{
-		ft_putstr(tmp->data);
-		tmp = tmp->next;
-		ft_putchar('\n');
-	}
-}
-
-void	print_stacks(t_all *all)
-{
-	t_number	*a;
-	t_number	*b;
-	int			i;
-
-	a = all->a->first;
-	b = all->b->first;
-	ft_putstr("Stack a: ");
-	i = 0;
-	while (i < all->a->len)
-	{
-		ft_putnbr(a->value);
-		ft_putchar(' ');
-		a = a->next;
-		i++;
-	}
-	ft_putstr("\nStack b: ");
-	i = 0;
-	while (i < all->b->len)
-	{
-		ft_putnbr(b->value);
-		ft_putchar(' ');
-		b = b->next;
-		i++;
-	}
-	ft_putchar('\n');
 }

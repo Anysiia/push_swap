@@ -6,15 +6,16 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 16:11:57 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/22 12:39:44 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/25 12:05:57 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/global.h"
 
-int	swap_a(t_all *all)
+int	swap_a(t_all *all, int print)
 {
 	int	tmp;
+	int	ret;
 
 	if (all->a->len > 1)
 	{
@@ -22,12 +23,19 @@ int	swap_a(t_all *all)
 		all->a->first->next->value = all->a->first->value;
 		all->a->first->value = tmp;
 	}
+	if (print)
+	{
+		ret = push_back_instruction(all->op, "sa\n");
+		if (ret == EXIT_FAILURE)
+			return (EXIT_FAILURE);
+	}
 	return (EXIT_SUCCESS);
 }
 
-int	swap_b(t_all *all)
+int	swap_b(t_all *all, int print)
 {
 	int	tmp;
+	int	ret;
 
 	if (all->b->len > 1)
 	{
@@ -35,18 +43,26 @@ int	swap_b(t_all *all)
 		all->b->first->next->value = all->b->first->value;
 		all->b->first->value = tmp;
 	}
+	if (print)
+	{
+		ret = push_back_instruction(all->op, "sb\n");
+		if (ret == EXIT_FAILURE)
+			return (EXIT_FAILURE);
+	}
 	return (EXIT_SUCCESS);
 }
 
-int	swap_all(t_all *all)
+int	swap_all(t_all *all, int print)
 {
 	int	ret;
 
-	ret = swap_a(all);
-	if (ret == EXIT_FAILURE)
-		return (EXIT_FAILURE);
-	ret = swap_b(all);
-	if (ret == EXIT_FAILURE)
-		return (EXIT_FAILURE);
+	swap_a(all, 0);
+	swap_b(all, 0);
+	if (print)
+	{
+		ret = push_back_instruction(all->op, "ss\n");
+		if (ret == EXIT_FAILURE)
+			return (EXIT_FAILURE);
+	}
 	return (EXIT_SUCCESS);
 }
