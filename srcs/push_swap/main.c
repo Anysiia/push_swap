@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:40:50 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/29 15:54:44 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/29 16:30:32 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int	select_algo(t_all *all)
 		return (swap_a(all, 1));
 	else if (all->a->len == 3)
 		return (three_case(all));
-/*	else if (all->a->len < 50)
+	else if (all->a->len < 50)
 		return (insert_sort(all));
-	else
+/*	else
 		return (quick_sort(all));*/
 	return (EXIT_SUCCESS);
 }
