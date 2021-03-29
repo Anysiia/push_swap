@@ -28,7 +28,8 @@ SRCS =			srcs/utils/check_arg.c \
 SRCS_CHECKER =	srcs/checker/main.c \
 				srcs/checker/instruction.c
 
-SRCS_PUSH =		srcs/push_swap/main.c
+SRCS_PUSH =		srcs/push_swap/main.c \
+				srcs/push_swap/three_case.c
 
 OBJS =			${SRCS:.c=.o}
 
