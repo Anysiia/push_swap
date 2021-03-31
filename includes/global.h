@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 12:01:36 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/25 16:54:34 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/31 15:40:46 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,13 @@ push_swap
 */
 int		select_algo(t_all *all);
 int		three_case(t_all *all);
+int		five_case(t_all *all);
 int		insert_sort(t_all *all);
 int		quick_sort(t_all *all);
+
+int		find_smaller_number_position(t_stack *stack, int *smaller);
+int		find_larger_number_position(t_stack *stack, int *larger);
+int		ra_rra_n_times(t_all *all, int n);
+int		rb_rrb_n_times(t_all *all, int n);
 
 #endif

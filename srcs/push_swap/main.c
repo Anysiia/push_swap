@@ -6,11 +6,35 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:40:50 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/29 16:30:32 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/31 16:12:10 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/global.h"
+
+int	five_case(t_all *all)
+{
+	int	i;
+	int	pos;
+	int	small;
+
+	i = 0;
+	small = 0;
+	while (all->a->len > 3)
+	{
+		pos = find_smaller_number_position(all->a, &small);
+		ra_rra_n_times(all, pos);
+		push_b(all, 1);
+		i++;
+	}
+	three_case(all);
+	while (i > 0)
+	{
+		push_a(all, 1);
+		i--;
+	}
+	return (EXIT_SUCCESS);
+}
 
 int	select_algo(t_all *all)
 {
@@ -23,8 +47,10 @@ int	select_algo(t_all *all)
 		return (swap_a(all, 1));
 	else if (all->a->len == 3)
 		return (three_case(all));
+	else if (all->a->len == 4 || all->a->len == 5)
+		return (five_case(all));
 	else if (all->a->len < 50)
-		return (insert_sort(all));
+		return (five_case(all));
 /*	else
 		return (quick_sort(all));*/
 	return (EXIT_SUCCESS);
