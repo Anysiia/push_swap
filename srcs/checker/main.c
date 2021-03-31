@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 11:59:31 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/25 10:39:04 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/31 17:46:57 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,9 @@ int	main(int ac, char **av)
 	if (ac == 1)
 		return (EXIT_SUCCESS);
 	init_all(&tmp);
-	ret = check_args(ac, av, &tmp);
-	if (ret)
-		return (error(&tmp));
-	ret = get_instruction(&tmp);
-	if (ret)
-		return (error(&tmp));
-	ret = execute_all_instruction(&tmp);
-	if (ret)
-		return (error(&tmp));
+	check_args(ac, av, &tmp);
+	get_instruction(&tmp);
+	execute_all_instruction(&tmp);
 	ret = is_sort(&tmp);
 	if (ret)
 		ft_putstr("KO\n");

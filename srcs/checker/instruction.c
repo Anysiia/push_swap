@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 17:05:40 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/25 17:07:36 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/31 17:57:21 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	is_instruction(char	*to_test)
 	return (EXIT_FAILURE);
 }
 
-int	get_instruction(t_all *all)
+void	get_instruction(t_all *all)
 {
 	char	*line;
 	int		ret;
@@ -39,32 +39,28 @@ int	get_instruction(t_all *all)
 		if (ret == EXIT_FAILURE)
 		{
 			ft_freestr(&line);
-			return (EXIT_FAILURE);
+			error(all);
 		}
 		ret = push_back_instruction(all->op, line);
 		if (ret == EXIT_FAILURE)
 		{
 			ft_freestr(&line);
-			return (EXIT_FAILURE);
+			error(all);
 		}
 		ft_freestr(&line);
 	}
 	ft_freestr(&line);
-	return (EXIT_SUCCESS);
 }
 
-int	execute_all_instruction(t_all *all)
+void	execute_all_instruction(t_all *all)
 {
 	t_op	*list;
-	int		ret;
 
 	ft_putstr("\n---Start tri---\n");
 	list = all->op->first;
 	while (list)
 	{
-		ret = execute_instruction(all, list->data, 0);
-		if (ret)
-			return (EXIT_FAILURE);
+		execute_instruction(all, list->data, 0);
 		ft_putstr("Operation: ");
 		ft_putstr(list->data);
 		ft_putstr("\n");
@@ -72,5 +68,4 @@ int	execute_all_instruction(t_all *all)
 		ft_putstr("\n");
 		list = list->next;
 	}
-	return (EXIT_SUCCESS);
 }

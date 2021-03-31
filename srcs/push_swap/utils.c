@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 15:19:23 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/31 16:11:21 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/31 18:15:29 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,60 +56,21 @@ int	find_larger_number_position(t_stack *stack, int *larger)
 	return (i);
 }
 
-int	ra_rra_n_times(t_all *all, int n)
+void	ra_rra_n_times(t_all *all, int n)
 {
 	int	i;
 	int	dist;
-	int	ret;
 
 	i = 0;
 	if (n > all->a->len / 2)
 	{
 		dist = all->a->len - n + 1;
 		while (dist--)
-		{
-			ret = reverse_rotate_a(all, 1);
-			if (ret)
-				return (EXIT_FAILURE);
-			i++;
-		}
+			reverse_rotate_a(all, 1);
 	}
 	else
 	{
 		while (i < (all->a->len - n))
-		{
-			ret = rotate_a(all, 1);
-			if (ret)
-				return (EXIT_FAILURE);
-		}
+			rotate_a(all, 1);
 	}
-	return (EXIT_SUCCESS);
-}
-
-int	rb_rrb_n_times(t_all *all, int n)
-{
-	int	i;
-	int	ret;
-
-	i = 0;
-	if (n > all->b->len / 2)
-	{
-		while (i < n)
-		{
-			ret = reverse_rotate_b(all, 1);
-			if (ret)
-				return (EXIT_FAILURE);
-			i++;
-		}
-	}
-	else
-	{
-		while (i < (all->b->len - n))
-		{
-			ret = rotate_b(all, 1);
-			if (ret)
-				return (EXIT_FAILURE);
-		}
-	}
-	return (EXIT_SUCCESS);
 }

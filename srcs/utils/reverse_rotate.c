@@ -6,13 +6,13 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 16:18:05 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/25 11:51:56 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/31 18:00:56 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/global.h"
 
-int	reverse_rotate_a(t_all *all, int print)
+void	reverse_rotate_a(t_all *all, int print)
 {
 	int	ret;
 
@@ -22,12 +22,11 @@ int	reverse_rotate_a(t_all *all, int print)
 	{
 		ret = push_back_instruction(all->op, "rra\n");
 		if (ret == EXIT_FAILURE)
-			return (EXIT_FAILURE);
+			error(all);
 	}
-	return (EXIT_SUCCESS);
 }
 
-int	reverse_rotate_b(t_all *all, int print)
+void	reverse_rotate_b(t_all *all, int print)
 {
 	int	ret;
 
@@ -37,12 +36,11 @@ int	reverse_rotate_b(t_all *all, int print)
 	{
 		ret = push_back_instruction(all->op, "rrb\n");
 		if (ret == EXIT_FAILURE)
-			return (EXIT_FAILURE);
+			error(all);
 	}
-	return (EXIT_SUCCESS);
 }
 
-int	reverse_rotate_all(t_all *all, int print)
+void	reverse_rotate_all(t_all *all, int print)
 {
 	int	ret;
 
@@ -52,7 +50,6 @@ int	reverse_rotate_all(t_all *all, int print)
 	{
 		ret = push_back_instruction(all->op, "rrr\n");
 		if (ret == EXIT_FAILURE)
-			return (EXIT_FAILURE);
+			error(all);
 	}
-	return (EXIT_SUCCESS);
 }
