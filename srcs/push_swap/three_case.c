@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 15:42:37 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/31 18:13:04 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/03/31 18:46:39 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ void	three_case(t_all *all)
 	value2 = all->a->first->next->value;
 	value3 = all->a->first->next->next->value;
 	if (value1 > value2 && value2 < value3 && value1 < value3)
-		swap_a(all, 1);
+		return (swap_a(all, 1));
 	else if (value1 > value2 && value1 > value3 && value2 < value3)
-		rotate_a(all, 1);
+		return (rotate_a(all, 1));
 	else if (value1 < value2 && value1 > value3 && value2 > value3)
-		reverse_rotate_a(all, 1);
+		return (reverse_rotate_a(all, 1));
 	swap_a(all, 1);
 	if (value1 > value2 && value1 > value3 && value2 > value3)
 		reverse_rotate_a(all, 1);
