@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 15:19:23 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/31 18:15:29 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/04/02 17:22:07 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	find_smaller_number_position(t_stack *stack, int *small)
 	t_number	*tmp;
 
 	i = 1;
+	pos = 0;
 	*small = stack->first->value;
 	tmp = stack->first->next;
 	while (i < stack->len)
@@ -31,7 +32,7 @@ int	find_smaller_number_position(t_stack *stack, int *small)
 		tmp = tmp->next;
 		i++;
 	}
-	return (i);
+	return (pos);
 }
 
 int	find_larger_number_position(t_stack *stack, int *larger)
@@ -41,6 +42,7 @@ int	find_larger_number_position(t_stack *stack, int *larger)
 	t_number	*tmp;
 
 	i = 1;
+	pos = 0;
 	*larger = stack->first->value;
 	tmp = stack->first->next;
 	while (i < stack->len)
@@ -56,21 +58,22 @@ int	find_larger_number_position(t_stack *stack, int *larger)
 	return (i);
 }
 
-void	ra_rra_n_times(t_all *all, int n)
+void	ra_rra_n_times(t_all *all, int pos)
 {
-	int	i;
 	int	dist;
 
-	i = 0;
-	if (n > all->a->len / 2)
+	if (pos == 0)
+		return ;
+	else if (pos > all->a->len / 2)
 	{
-		dist = all->a->len - n + 1;
+		dist = all->a->len - pos;
 		while (dist--)
 			reverse_rotate_a(all, 1);
 	}
 	else
 	{
-		while (i < (all->a->len - n))
+		dist = pos;
+		while (dist--)
 			rotate_a(all, 1);
 	}
 }

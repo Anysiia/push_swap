@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 15:42:37 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/31 18:46:39 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/04/02 17:09:26 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	three_case(t_all *all)
 	int	value2;
 	int	value3;
 
-	if (all->a->len != 3)
+	if (all->a->len != 3 || !is_sort_stack(all->a))
 		return ;
 	value1 = all->a->first->value;
 	value2 = all->a->first->next->value;
