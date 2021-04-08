@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 15:19:23 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/04/02 17:22:07 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/04/08 11:42:46 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,25 @@ void	ra_rra_n_times(t_all *all, int pos)
 		dist = pos;
 		while (dist--)
 			rotate_a(all, 1);
+	}
+}
+
+void	rb_rrb_n_times(t_all *all, int pos)
+{
+	int	dist;
+
+	if (pos == 0)
+		return ;
+	else if (pos > all->b->len / 2)
+	{
+		dist = all->b->len - pos;
+		while (dist--)
+			reverse_rotate_b(all, 1);
+	}
+	else
+	{
+		dist = pos;
+		while (dist--)
+			rotate_b(all, 1);
 	}
 }
