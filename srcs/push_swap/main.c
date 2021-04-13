@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:40:50 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/04/02 16:31:15 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/04/13 10:45:41 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,10 @@ void	select_algo(t_all *all)
 		swap_a(all, 1);
 	else if (all->a->len == 3)
 		three_case(all);
-	else if (all->a->len == 4 || all->a->len == 5)
+	else if (all->a->len > 3 && all->a->len < 50)
 		five_case(all);
-	else if (all->a->len < 50)
-		five_case(all);
-/*	else
-		return (quick_sort(all));*/
+	else
+		quick_sort(all);
 }
 
 int	main(int ac, char **av)

@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 12:01:36 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/04/02 17:08:04 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/04/13 11:02:47 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ push_swap
 void	select_algo(t_all *all);
 void	three_case(t_all *all);
 void	five_case(t_all *all);
-void	insert_sort(t_all *all);
 void	quick_sort(t_all *all);
 
 int		find_smaller_number_position(t_stack *stack, int *smaller);
