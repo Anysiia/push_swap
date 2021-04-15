@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quick_sort.c                                       :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 10:58:09 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/04/13 12:06:03 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/04/15 15:50:16 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/global.h"
 
-int	*bubble_sort(int *median, int parts)
+static int	*bubble_sort(int *median, int parts)
 {
 	int	i;
 	int	j;
@@ -37,7 +37,7 @@ int	*bubble_sort(int *median, int parts)
 	return (median);
 }
 
-int	*get_short_sort_list(t_all *all, int parts)
+static int	*get_short_sort_list(t_all *all, int parts)
 {
 	t_number	*tmp;
 	int			i;
@@ -65,19 +65,51 @@ int	*get_short_sort_list(t_all *all, int parts)
 	return (median);
 }
 
-
-void	quick_sort(t_all *all)
+static int		numbers_in_chunks(t_stack *a, int value)
 {
-	int		*pivot;
+	t_number	*tmp;
+	int			nb;
+
+	nb = 0;
+	tmp = a->first->next;
+	if (a->first->value == value)
+		nb++;
+	while (tmp != a->first)
+	{
+		if (tmp->value <= value)
+			nb++;
+		tmp = tmp->next;
+	}
+	return (nb);
+}
+
+void	sort(t_all *all, int nb_chunks)
+{
+	int		*list;
 	int		i;
+	int		nb_in_stack;
+	int		j;
 
 	i = 0;
-	pivot = get_short_sort_list(all, 11);
-	while (i < 11)
+	list = get_short_sort_list(all, nb_chunks);
+	while (i < nb_chunks)
 	{
-		ft_putnbr(pivot[i]);
-		ft_putchar('\n');
+		nb_in_stack = numbers_in_chunks(all->a, list[i]);
+		j = 0;
+		while (j < nb_in_stack && all->a->len > 0)
+		{
+			if (all->a->first->value <= list[i])
+			{
+				push_b(all, 1);
+				j++;
+			}
+			else
+				rotate_a(all, 1);
+		}
 		i++;
 	}
-	free(pivot);
+	while (all->a->len > 0)
+		push_b(all, 1);
+	push_larger_to_b(all);
+	free(list);
 }
