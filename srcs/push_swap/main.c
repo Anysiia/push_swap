@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:40:50 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/04/15 14:31:24 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/04/19 14:58:43 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,13 @@ static void	select_algo(t_all *all)
 	else if (all->a->len > 5 && all->a->len <= 50)
 		sort(all, 5);
 	else if (all->a->len > 50 && all->a->len <= 100)
-		sort(all, 7);
-	else if (all->a->len > 100 && all->a->len <= 250)
 		sort(all, 9);
+	else if (all->a->len > 100 && all->a->len <= 250)
+		sort(all, 13);
 	else if (all->a->len > 250 && all->a->len <= 500)
-		sort(all, 11);
+		sort(all, 19);
 	else if (all->a->len > 500)
-		sort(all, 15);
+		sort(all, 23);
 }
 
 int	main(int ac, char **av)

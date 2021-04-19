@@ -6,64 +6,11 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 10:58:09 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/04/15 15:50:16 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/04/19 17:11:20 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/global.h"
-
-static int	*bubble_sort(int *median, int parts)
-{
-	int	i;
-	int	j;
-	int	swap;
-
-	i = 0;
-	while (i < parts)
-	{
-		j = 0;
-		while (j < parts)
-		{
-			if (median[i] < median[j])
-			{
-				swap = median[i];
-				median[i] = median[j];
-				median[j] = swap;
-			}
-			j++;
-		}
-		i++;
-	}
-	return (median);
-}
-
-static int	*get_short_sort_list(t_all *all, int parts)
-{
-	t_number	*tmp;
-	int			i;
-	int			*median;
-	int			index;
-
-	i = 0;
-	index = 1;
-	tmp = all->a->first;
-	median = (int*)malloc(sizeof(int) * parts);
-	if (!median)
-		error(all);
-	median[0] = all->a->first->value;
-	while (i < all->a->len && index < parts)
-	{
-		if (i == (all->a->len / parts * index))
-		{
-			median[index] = tmp->value;
-			index++;
-		}
-		i++;
-		tmp = tmp->next;
-	}
-	median = bubble_sort(median, parts);
-	return (median);
-}
 
 static int		numbers_in_chunks(t_stack *a, int value)
 {
@@ -83,6 +30,37 @@ static int		numbers_in_chunks(t_stack *a, int value)
 	return (nb);
 }
 
+int		get_position(t_stack *a, int limit, int type)
+{
+	t_number	*tmp;
+	int			pos;
+
+	pos = 0;
+	tmp = a->first;
+	while (pos < a->len && tmp->value > limit)
+	{
+		if (type == 0)
+			tmp = tmp->next;
+		else
+			tmp = tmp->prev;
+		pos++;
+	}
+	return (pos);
+}
+
+void	find_next_number(t_all *all, int limit)
+{
+	int		pos_top;
+	int		pos_bottom;
+
+	pos_top = get_position(all->a, limit, 0);
+	pos_bottom = get_position(all->a, limit, 0);
+	if (pos_top > pos_bottom)
+		ra_rra_n_times(all, all->a->len - pos_bottom - 1);
+	else
+		ra_rra_n_times(all, pos_top);
+}
+
 void	sort(t_all *all, int nb_chunks)
 {
 	int		*list;
@@ -90,21 +68,18 @@ void	sort(t_all *all, int nb_chunks)
 	int		nb_in_stack;
 	int		j;
 
-	i = 0;
 	list = get_short_sort_list(all, nb_chunks);
+	i = 0;
 	while (i < nb_chunks)
 	{
 		nb_in_stack = numbers_in_chunks(all->a, list[i]);
 		j = 0;
 		while (j < nb_in_stack && all->a->len > 0)
 		{
-			if (all->a->first->value <= list[i])
-			{
-				push_b(all, 1);
-				j++;
-			}
-			else
-				rotate_a(all, 1);
+			if (all->a->first->value > list[i])
+				find_next_number(all, list[i]);
+			push_b(all, 1);
+			j++;
 		}
 		i++;
 	}
