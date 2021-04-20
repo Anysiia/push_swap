@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 10:58:09 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/04/19 17:11:20 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/04/20 10:58:02 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ void	find_next_number(t_all *all, int limit)
 	int		pos_bottom;
 
 	pos_top = get_position(all->a, limit, 0);
-	pos_bottom = get_position(all->a, limit, 0);
+	pos_bottom = get_position(all->a, limit, 1);
 	if (pos_top > pos_bottom)
-		ra_rra_n_times(all, all->a->len - pos_bottom - 1);
+		ra_rra_n_times(all, all->a->len - pos_bottom);
 	else
 		ra_rra_n_times(all, pos_top);
 }
