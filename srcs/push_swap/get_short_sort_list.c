@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 15:29:00 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/04/19 15:29:44 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/04/20 12:34:06 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ int	*get_short_sort_list(t_all *all, int parts)
 	i = 0;
 	index = 1;
 	tmp = all->a->first;
-	median = (int*)malloc(sizeof(int) * parts);
+	median = (int *)malloc(sizeof(int) * parts);
 	if (!median)
 		error(all);
 	median[0] = all->a->first->value;
-	while (i < all->a->len && index < parts)
+	while (i < all->a->len && index < parts - 1)
 	{
 		if (i == (all->a->len / parts * index))
 		{
@@ -61,6 +61,7 @@ int	*get_short_sort_list(t_all *all, int parts)
 		i++;
 		tmp = tmp->next;
 	}
+	find_larger_number_position(all->a, &median[parts - 1]);
 	median = bubble_sort(median, parts);
 	return (median);
 }
