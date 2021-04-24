@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 15:19:23 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/04/15 15:09:58 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/04/24 16:42:16 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	find_larger_number_position(t_stack *stack, int *larger)
 	return (pos);
 }
 
-void	ra_rra_n_times(t_all *all, int pos)
+void	ra_rra(t_all *all, int pos)
 {
 	int	dist;
 
@@ -78,7 +78,7 @@ void	ra_rra_n_times(t_all *all, int pos)
 	}
 }
 
-void	rb_rrb_n_times(t_all *all, int pos)
+void	rb_rrb(t_all *all, int pos)
 {
 	int	dist;
 
@@ -106,7 +106,7 @@ void	push_larger_to_b(t_all *all)
 	while (all->b->len > 0)
 	{
 		pos = find_larger_number_position(all->b, &value);
-		rb_rrb_n_times(all, pos);
+		rb_rrb(all, pos);
 		push_a(all, 1);
 	}
 }

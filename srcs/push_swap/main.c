@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:40:50 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/04/19 14:58:43 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/04/24 17:57:46 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,43 @@ static void	five_case(t_all *all)
 	while (all->a->len > 3)
 	{
 		pos = find_smaller_number_position(all->a, &small);
-		ra_rra_n_times(all, pos);
+		ra_rra(all, pos);
 		push_b(all, 1);
 		i++;
 	}
 	three_case(all);
-	while (i > 0)
-	{
+	while (all->b->len > 0)
 		push_a(all, 1);
-		i--;
-	}
 }
+
+/*
+static void	bb_sort(t_all *all)
+{
+	int			i;
+	int			j;
+	t_number	*tmp;
+
+	i = 1;
+	while (i < all->a->len)
+	{
+		if (!is_sort(all))
+			return ;
+		tmp = all->a->first;
+		j = 1;
+		while (j < all->a->len)
+		{
+			if (!is_sort(all))
+				return ;
+			if (tmp->value > tmp->next->value)
+				swap_a(all, 1);
+			rotate_a(all, 1);
+			tmp = all->a->first;
+			j++;
+		}
+		rotate_a(all, 1);
+		i++;
+	}
+}*/
 
 static void	select_algo(t_all *all)
 {
@@ -72,6 +98,8 @@ static void	select_algo(t_all *all)
 		three_case(all);
 	else if (all->a->len == 4 || all->a->len == 5)
 		five_case(all);
+/*	else
+		bb_sort(all);*/
 	else if (all->a->len > 5 && all->a->len <= 50)
 		sort(all, 5);
 	else if (all->a->len > 50 && all->a->len <= 100)
