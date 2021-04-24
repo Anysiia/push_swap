@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 10:58:09 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/04/20 12:34:43 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/04/24 11:11:54 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,58 @@ int	find_pos_b(t_stack *b, int value)
 	if (b->len == 0)
 		return (pos);
 	tmp = b->first;
-	while (pos < b->len && tmp->value < value)
+	while (pos < b->len && tmp->value > value)
 	{
 		tmp = tmp->next;
 		pos++;
 	}
 	return (pos);
+}
+
+void	print_position_and_value(t_all *all, int limit, int pos_top, int pos_bottom, int value_top, int value_bottom, int pos_b)
+{
+	t_number	*tmp;
+	int			i;
+
+	ft_putstr("---------\nStack a: ");
+	tmp = all->a->first;
+	i = 0;
+	while (i < all->a->len)
+	{
+		ft_putstr("[");
+		ft_putnbr(i);
+		ft_putstr("]");
+		ft_putnbr(tmp->value);
+		ft_putstr(" ");
+		tmp = tmp->next;
+		i++;
+	}
+	i = 0;
+	tmp = all->b->first;
+	ft_putstr("\n\nStack b: ");
+	while (i < all->b->len)
+	{
+		ft_putstr("[");
+		ft_putnbr(i);
+		ft_putstr("]");
+		ft_putnbr(tmp->value);
+		ft_putstr(" ");
+		tmp = tmp->next;
+		i++;
+	}
+	ft_putstr("\nLimit: ");
+	ft_putnbr(limit);
+	ft_putstr("\nPosition top: ");
+	ft_putnbr(pos_top);
+	ft_putstr(" value top: ");
+	ft_putnbr(value_top);
+	ft_putstr("\nPosition bottom: ");
+	ft_putnbr(pos_bottom);
+	ft_putstr(" value bottom: ");
+	ft_putnbr(value_bottom);
+	ft_putstr("\nPosition b: ");
+	ft_putnbr(pos_b);
+	ft_putstr("\n");
 }
 
 void	find_next_number(t_all *all, int limit)
@@ -80,6 +126,7 @@ void	find_next_number(t_all *all, int limit)
 		pos_b = find_pos_b(all->b, value_bottom);
 	else
 		pos_b = find_pos_b(all->b, value_top);
+//	print_position_and_value(all, limit, pos_top, pos_bottom, value_top, value_bottom, pos_b);
 	rb_rrb_n_times(all, pos_b);
 	if (pos_top > pos_bottom)
 		ra_rra_n_times(all, all->a->len - pos_bottom);
@@ -102,8 +149,7 @@ void	sort(t_all *all, int nb_chunks)
 		j = 0;
 		while (j < nb_in_stack && all->a->len > 0)
 		{
-			if (all->a->first->value > list[i])
-				find_next_number(all, list[i]);
+			find_next_number(all, list[i]);
 			push_b(all, 1);
 			j++;
 		}
