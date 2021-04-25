@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 10:58:09 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/04/24 18:23:01 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/04/25 10:25:10 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,8 +129,8 @@ void	find_next_number(t_all *all, int limit)
 		pos_b = find_pos_b(all->b, value_bottom);
 	else
 		pos_b = find_pos_b(all->b, value_top);
-	print_values(all, limit, value_top, value_bottom, pos_top, pos_bottom, pos_b);
-	rb_rrb(all, pos_b);
+//	print_values(all, limit, value_top, value_bottom, pos_top, pos_bottom, pos_b);
+//	rb_rrb(all, pos_b);
 	if (pos_top > pos_bottom)
 		ra_rra(all, all->a->len - pos_bottom);
 	else
@@ -144,7 +144,7 @@ void	sort(t_all *all, int nb_chunks)
 	int		nb_in_stack;
 	int		j;
 
-	list = get_short_sort_list(all, all->a, nb_chunks);
+	list = get_limit_values(all, all->a, nb_chunks);
 	i = 0;
 	while (i < nb_chunks)
 	{

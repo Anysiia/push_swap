@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_short_sort_list.c                              :+:      :+:    :+:   */
+/*   get_limit_values.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 15:29:00 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/04/24 15:47:49 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/04/25 10:28:13 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,54 +37,51 @@ static int	*bubble_sort(int *median, int parts)
 	return (median);
 }
 
-int	*get_short_sort_list(t_all *all, t_stack *stack, int parts)
+static int	*short_sort_list(t_all *all, int *sort_list, int len, int parts)
+{
+	int		i;
+	int		index;
+	int		*short_tab;
+
+	i = 0;
+	index = 1;
+	short_tab = (int *)malloc(sizeof(int) * parts);
+	if (!short_tab)
+		error(all);
+	while (i < len && index < parts - 1)
+	{
+		if (i == (len / parts * index))
+		{
+			short_tab[index] = sort_list[i];
+			index++;
+		}
+		i++;
+	}
+	short_tab[index] = sort_list[len - 1];
+	return (short_tab);
+}
+
+int	*get_limit_values(t_all *all, t_stack *stack, int parts)
 {
 	t_number	*tmp;
 	int			i;
 	int			*median;
-	int			index;
+	int			*short_tab;
 
 	i = 0;
-	index = 1;
 	tmp = stack->first;
-	median = (int *)malloc(sizeof(int) * parts);
+	median = (int *)malloc(sizeof(int) * stack->len);
 	if (!median)
 		error(all);
-	median[0] = stack->first->value;
-	while (i < stack->len && index < parts - 1)
+	while (i < stack->len)
 	{
-		if (i == (stack->len / parts * index))
-		{
-			median[index] = tmp->value;
-			index++;
-		}
+		median[i] = tmp->value;
 		i++;
 		tmp = tmp->next;
 	}
-	find_larger_number_position(stack, &median[parts - 1]);
-	median = bubble_sort(median, parts);
-	return (median);
-}
-
-int		pivot_stack(t_all *all, t_stack *stack)
-{
-	int	parts;
-	int	*median;
-	int	pivot;
-
-	if (stack->len > 3 && stack->len <= 50)
-		parts = 3;
-	else if (stack->len > 50 && stack->len <= 100)
-		parts = 5;
-	else if (stack->len > 100 && stack->len <= 250)
-		parts = 9;
-	else if (stack->len > 250 && stack->len <= 500)
-		parts = 11;
-	else
-		parts = 13;
-	median = get_short_sort_list(all, stack, parts);
-	pivot = median[parts/2];
+	median = bubble_sort(median, stack->len);
+	short_tab = short_sort_list(all, median, stack->len, parts);
 	free(median);
-	median = NULL;
-	return (pivot);
+	return (short_tab);
 }
+

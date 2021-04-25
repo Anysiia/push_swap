@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:40:50 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/04/24 17:57:46 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/04/25 10:39:16 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,35 +56,6 @@ static void	five_case(t_all *all)
 		push_a(all, 1);
 }
 
-/*
-static void	bb_sort(t_all *all)
-{
-	int			i;
-	int			j;
-	t_number	*tmp;
-
-	i = 1;
-	while (i < all->a->len)
-	{
-		if (!is_sort(all))
-			return ;
-		tmp = all->a->first;
-		j = 1;
-		while (j < all->a->len)
-		{
-			if (!is_sort(all))
-				return ;
-			if (tmp->value > tmp->next->value)
-				swap_a(all, 1);
-			rotate_a(all, 1);
-			tmp = all->a->first;
-			j++;
-		}
-		rotate_a(all, 1);
-		i++;
-	}
-}*/
-
 static void	select_algo(t_all *all)
 {
 	int	ret;
@@ -98,18 +69,16 @@ static void	select_algo(t_all *all)
 		three_case(all);
 	else if (all->a->len == 4 || all->a->len == 5)
 		five_case(all);
-/*	else
-		bb_sort(all);*/
 	else if (all->a->len > 5 && all->a->len <= 50)
-		sort(all, 5);
+		sort(all, 3);
 	else if (all->a->len > 50 && all->a->len <= 100)
 		sort(all, 9);
 	else if (all->a->len > 100 && all->a->len <= 250)
 		sort(all, 13);
 	else if (all->a->len > 250 && all->a->len <= 500)
-		sort(all, 19);
+		sort(all, 25);
 	else if (all->a->len > 500)
-		sort(all, 23);
+		sort(all, all->a->len / 30);
 }
 
 int	main(int ac, char **av)

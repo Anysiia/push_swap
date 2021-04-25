@@ -30,7 +30,7 @@ SRCS_CHECKER =	srcs/checker/main.c \
 
 SRCS_PUSH =		srcs/push_swap/main.c \
 				srcs/push_swap/sort.c \
-				srcs/push_swap/get_short_sort_list.c \
+				srcs/push_swap/get_limit_values.c \
 				srcs/push_swap/utils.c
 
 OBJS =			${SRCS:.c=.o}
