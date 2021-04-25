@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 10:58:09 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/04/25 10:25:10 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/04/25 16:29:29 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,24 +117,25 @@ void	print_values(t_all *all, int limit, int value_top, int value_bottom, int po
 
 void	find_next_number(t_all *all, int limit)
 {
-	int		value_top;
+	t_info	tmp;
+	/*	int		value_top;
 	int		value_bottom;
 	int		pos_top;
 	int		pos_bottom;
-	int		pos_b;
+	int		pos_b;*/
 
-	pos_top = get_position(all->a, limit, 0, &value_top);
-	pos_bottom = get_position(all->a, limit, 1, &value_bottom);
-	if (pos_top > pos_bottom)
-		pos_b = find_pos_b(all->b, value_bottom);
+	tmp.pos_top = get_position(all->a, limit, 0, &tmp.value_top);
+	tmp.pos_bottom = get_position(all->a, limit, 1, &tmp.value_bottom);
+	if (tmp.pos_top > tmp.pos_bottom)
+		tmp.pos_b = find_pos_b(all->b, tmp.value_bottom);
 	else
-		pos_b = find_pos_b(all->b, value_top);
+		tmp.pos_b = find_pos_b(all->b, tmp.value_top);
 //	print_values(all, limit, value_top, value_bottom, pos_top, pos_bottom, pos_b);
 //	rb_rrb(all, pos_b);
-	if (pos_top > pos_bottom)
-		ra_rra(all, all->a->len - pos_bottom);
+	if (tmp.pos_top > tmp.pos_bottom)
+		ra_rra(all, all->a->len - tmp.pos_bottom);
 	else
-		ra_rra(all, pos_top);
+		ra_rra(all, tmp.pos_top);
 }
 
 void	sort(t_all *all, int nb_chunks)

@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 11:59:31 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/04/25 11:10:39 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/04/25 15:57:14 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,6 @@ static int	is_inlist(t_all *all, int number)
 	return (0);
 }
 
-static void	set_min_max(t_all *all, int number)
-{
-	if (number > all->max)
-		all->max = number;
-	if (number < all->min)
-		all->min = number;
-}
-
 static int	check_av_list(int ac, char **av, t_all *all, int i)
 {
 	int		number;
@@ -72,7 +64,6 @@ static int	check_av_list(int ac, char **av, t_all *all, int i)
 		ret = push_back_number(all->a, number);
 		if (ret)
 			return (EXIT_FAILURE);
-		set_min_max(all, number);
 		i++;
 	}
 	return (EXIT_SUCCESS);
@@ -97,7 +88,6 @@ void	check_args(int ac, char **av, t_all *all)
 	nb_args = ft_len_tab(split);
 	ret = check_av_list(nb_args, split, all, 0);
 	split = ft_free_tab(split);
-	all->len = all->a->len;
 	if (ret)
 		error(all);
 }

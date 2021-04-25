@@ -29,11 +29,8 @@ SRCS_CHECKER =	srcs/checker/main.c \
 				srcs/checker/instruction.c
 
 SRCS_PUSH =		srcs/push_swap/main.c \
-				srcs/push_swap/quick_sort.c \
 				srcs/push_swap/sort.c \
 				srcs/push_swap/get_limit_values.c \
-				srcs/push_swap/set_utils_variables.c \
-				srcs/push_swap/fill_a.c \
 				srcs/push_swap/utils.c
 
 OBJS =			${SRCS:.c=.o}

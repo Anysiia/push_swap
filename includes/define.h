@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 12:47:34 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/04/25 14:47:50 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/04/25 16:26:34 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@
 # define STDOUT 1
 # define STDERR 2
 # define NB_OP 11
-# define OPTI 70
 
 typedef struct s_info
 {
-	int	pos;
-	int	moves;
-	int	dir;
+	int		value_top;
+	int		value_bottom;
+	int		pos_top;
+	int		pos_bottom;
+	int		pos_b;
 }	t_info;
 
 typedef struct s_number
@@ -59,11 +60,6 @@ typedef struct s_all
 	t_stack		*a;
 	t_stack		*b;
 	t_ope_list	*op;
-	int			min;
-	int			max;
-	int			*median;
-	int			nb_chunks;
-	int			len;
 }	t_all;
 
 #endif
