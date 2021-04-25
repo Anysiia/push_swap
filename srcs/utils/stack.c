@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:05:28 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/24 15:54:16 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/04/25 11:03:24 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,37 +35,6 @@ int	push_back_number(t_stack *stack, int value)
 	}
 	stack->len++;
 	return (EXIT_SUCCESS);
-}
-
-int	push_front_number(t_stack *stack, int value)
-{
-	int	ret;
-
-	ret = push_back_number(stack, value);
-	if (ret)
-		return (EXIT_FAILURE);
-	stack->first = stack->first->prev;
-	return (EXIT_SUCCESS);
-}
-
-int	remove_back_number(t_stack *stack)
-{
-	t_number	*tmp;
-
-	tmp = stack->first->prev;
-	if (!tmp)
-		return (EXIT_FAILURE);
-	stack->first->prev = stack->first->prev->prev;
-	stack->first->prev->prev->next = stack->first;
-	free(tmp);
-	stack->len--;
-	return (EXIT_SUCCESS);
-}
-
-int	remove_front_number(t_stack *stack)
-{
-	stack->first = stack->first->next;
-	return (remove_back_number(stack));
 }
 
 void	free_stack(t_stack **to_free)

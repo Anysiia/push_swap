@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 12:47:34 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/23 09:54:48 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/04/25 10:58:37 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@ typedef struct s_all
 	t_stack		*a;
 	t_stack		*b;
 	t_ope_list	*op;
+	int			min;
+	int			max;
+	int			*median;
+	int			nb_chunks;
+	int			len;
 }	t_all;
 
 #endif

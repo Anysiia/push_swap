@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:05:28 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/03/31 17:44:29 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/04/25 11:01:02 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ void	init_all(t_all *all)
 	all->op->first = NULL;
 	all->op->last = NULL;
 	all->op->len = 0;
+	all->min = INT_MAX;
+	all->max = INT_MIN;
+	all->median = NULL;
+	all->nb_chunks = 0;
+	all->len = 0;
 }
 
 void	free_all(t_all *all)
