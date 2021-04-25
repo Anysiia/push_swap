@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:05:28 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/04/25 11:01:02 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/04/25 12:05:13 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	free_all(t_all *all)
 		free_stack(&all->b);
 	if (all->op)
 		free_list(&all->op);
+	if (all->median)
+		free(all->median);
 }
 
 void	error(t_all *all)

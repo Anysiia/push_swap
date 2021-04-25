@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 12:01:36 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/04/25 11:23:08 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/04/25 12:15:50 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int		find_larger_number_position(t_stack *stack, int *larger);
 void	ra_rra(t_all *all, int position);
 void	rb_rrb(t_all *all, int position);
 void	push_larger_to_b(t_all *all);
-
+void	quick_sort(t_all *all);
+void	set_utils_variables(t_all *all);
 
 #endif

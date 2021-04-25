@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:40:50 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/04/25 11:16:49 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/04/25 12:15:12 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,23 @@ static void	five_case(t_all *all)
 		push_a(all, 1);
 }
 
+void	quick_sort(t_all *all)
+{
+	int	i;
+	int	j;
+	int	remain;
+
+	i = 0;
+	set_utils_variables(all);
+	j = all->len;
+	while (i < all-> nb_chunks)
+	{
+		remain = 0;
+		fill_b(all, j, i);
+		i++;
+	}
+}
+
 static void	select_algo(t_all *all)
 {
 	int	ret;
@@ -69,7 +86,7 @@ static void	select_algo(t_all *all)
 		three_case(all);
 	else if (all->a->len == 4 || all->a->len == 5)
 		five_case(all);
-	else if (all->a->len > 5 && all->a->len <= 50)
+/*	else if (all->a->len > 5 && all->a->len <= 50)
 		sort(all, 3);
 	else if (all->a->len > 50 && all->a->len <= 100)
 		sort(all, 9);
@@ -78,8 +95,13 @@ static void	select_algo(t_all *all)
 	else if (all->a->len > 250 && all->a->len <= 500)
 		sort(all, 25);
 	else if (all->a->len > 500)
-		sort(all, all->a->len / 30);
+		sort(all, all->a->len / 30);*/
+	else
+		quick_sort(all);
 }
+
+
+
 
 int	main(int ac, char **av)
 {
