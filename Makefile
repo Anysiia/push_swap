@@ -54,9 +54,9 @@ $(CHECKER):$(OBJS) $(O_CHECK)
 
 clean:
 		@rm -rf $(OBJS)
-		@rm -rf $(OBJS_CHECKER)
-		@rm -rf $(OBJS_PUSH)
-		@$(MAKE) clean -C ./libft/ >/dev/null
+		@rm -rf $(O_CHECK)
+		@rm -rf $(O_PUSH)
+		@$(MAKE) fclean -C ./libft/ >/dev/null
 
 fclean:
 		@rm -rf $(OBJS)
