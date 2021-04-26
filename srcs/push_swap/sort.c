@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 10:58:09 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/04/25 16:29:29 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/04/26 16:59:36 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	numbers_in_chunks(t_stack *a, int value)
 	return (nb);
 }
 
-int	get_position(t_stack *stack, int limit, int type, int *value)
+static int	get_position(t_stack *stack, int limit, int type, int *value)
 {
 	t_number	*tmp;
 	int			pos;
@@ -49,93 +49,19 @@ int	get_position(t_stack *stack, int limit, int type, int *value)
 	return (pos);
 }
 
-int	find_pos_b(t_stack *b, int value)
+static void	find_next_number(t_all *all, int limit)
 {
-	t_number	*tmp;
-	int			pos;
-
-	pos = 0;
-	if (b->len == 0)
-		return (pos);
-	tmp = b->first->next;
-	if (b->first->value < value)
-		pos++;
-	while (tmp != b->first)
-	{
-		tmp = tmp->next;
-		if (tmp->value < value)
-			pos++;
-	}
-	return (pos);
-}
-
-void	print_values(t_all *all, int limit, int value_top, int value_bottom, int pos_top, int pos_bottom, int pos_b)
-{
-	int			i;
-	t_number	*tmp;
-
-	i = 0;
-	tmp = all->a->first;
-	ft_putstr("-----------\nStack a: ");
-	while (i < all->a->len)
-	{
-		ft_putstr("[");
-		ft_putnbr(i);
-		ft_putstr("]");
-		ft_putnbr(tmp->value);
-		ft_putstr(" ");
-		tmp = tmp->next;
-		i++;
-	}
-	i = 0;
-	tmp = all->b->first;
-	ft_putstr("\n\nStack b: ");
-	while (i < all->b->len)
-	{
-		ft_putstr("[");
-		ft_putnbr(i);
-		ft_putstr("]");
-		ft_putnbr(tmp->value);
-		ft_putstr(" ");
-		tmp = tmp->next;
-		i++;
-	}
-	ft_putstr("\n\nLimit: ");
-	ft_putnbr(limit);
-	ft_putstr("\nPos top: ");
-	ft_putnbr(pos_top);
-	ft_putstr(" Value: ");
-	ft_putnbr(value_top);
-	ft_putstr("\nPos bot: ");
-	ft_putnbr(pos_bottom);
-	ft_putstr(" Value: ");
-	ft_putnbr(value_bottom);
-	ft_putstr("\nPos b: ");
-	ft_putnbr(pos_b);
-	ft_putstr("\n");
-}
-
-void	find_next_number(t_all *all, int limit)
-{
-	t_info	tmp;
-	/*	int		value_top;
+	int		value_top;
 	int		value_bottom;
 	int		pos_top;
 	int		pos_bottom;
-	int		pos_b;*/
 
-	tmp.pos_top = get_position(all->a, limit, 0, &tmp.value_top);
-	tmp.pos_bottom = get_position(all->a, limit, 1, &tmp.value_bottom);
-	if (tmp.pos_top > tmp.pos_bottom)
-		tmp.pos_b = find_pos_b(all->b, tmp.value_bottom);
+	pos_top = get_position(all->a, limit, 0, &value_top);
+	pos_bottom = get_position(all->a, limit, 1, &value_bottom);
+	if (pos_top > pos_bottom)
+		ra_rra(all, all->a->len - pos_bottom);
 	else
-		tmp.pos_b = find_pos_b(all->b, tmp.value_top);
-//	print_values(all, limit, value_top, value_bottom, pos_top, pos_bottom, pos_b);
-//	rb_rrb(all, pos_b);
-	if (tmp.pos_top > tmp.pos_bottom)
-		ra_rra(all, all->a->len - tmp.pos_bottom);
-	else
-		ra_rra(all, tmp.pos_top);
+		ra_rra(all, pos_top);
 }
 
 void	sort(t_all *all, int nb_chunks)
@@ -145,7 +71,7 @@ void	sort(t_all *all, int nb_chunks)
 	int		nb_in_stack;
 	int		j;
 
-	list = get_limit_values(all, all->a, nb_chunks);
+	list = get_limit_list(all, nb_chunks);
 	i = 0;
 	while (i < nb_chunks)
 	{
@@ -160,6 +86,6 @@ void	sort(t_all *all, int nb_chunks)
 		i++;
 	}
 	push_b(all, 1);
-	push_larger_to_b(all);
+	push_larger_to_a(all);
 	free(list);
 }

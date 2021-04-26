@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 15:19:23 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/04/24 16:42:16 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/04/26 16:54:39 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	rb_rrb(t_all *all, int pos)
 	}
 }
 
-void	push_larger_to_b(t_all *all)
+void	push_larger_to_a(t_all *all)
 {
 	int	pos;
 	int	value;

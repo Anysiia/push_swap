@@ -6,7 +6,7 @@
 /*   By: cmorel-a <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 12:01:36 by cmorel-a          #+#    #+#             */
-/*   Updated: 2021/04/25 15:18:07 by cmorel-a         ###   ########.fr       */
+/*   Updated: 2021/04/26 16:55:08 by cmorel-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ void	execute_all_instruction(t_all *all);
 push_swap
 */
 void	sort(t_all *all, int nb_chunks);
-int		*get_limit_values(t_all *all, t_stack *stack, int parts);
+int		*get_limit_list(t_all *all, int parts);
 int		find_smaller_number_position(t_stack *stack, int *smaller);
 int		find_larger_number_position(t_stack *stack, int *larger);
 void	ra_rra(t_all *all, int position);
 void	rb_rrb(t_all *all, int position);
-void	push_larger_to_b(t_all *all);
+void	push_larger_to_a(t_all *all);
 void	quick_sort(t_all *all);
 void	set_utils_variables(t_all *all);
 void	fill_a(t_all *all, int *remain);
